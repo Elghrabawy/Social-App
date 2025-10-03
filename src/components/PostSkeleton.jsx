@@ -21,7 +21,7 @@ export default function PostSkeleton(props) {
 					<div>
 						<Skeleton className="flex rounded-full w-12 h-12" />
 					</div>
-					<div className="w-[200px] flex flex-col gap-1 items-start justify-center">
+					<div className="w-full flex flex-col gap-1 items-start justify-center">
 						<Skeleton className="w-3/5 rounded-lg">
 							<div className="h-3 w-full rounded-lg bg-secondary" />
 						</Skeleton>
