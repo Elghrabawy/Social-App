@@ -38,7 +38,7 @@ export default function PostSkeleton(props) {
 				<Skeleton className="h-8 w-20 rounded-full" />
 			</CardHeader>
 
-			<CardBody className="w-[200] px-3 py-0 space-y-3 p-3">
+			<CardBody className="w-full px-3 py-0 space-y-3 p-3">
 				<div className="space-y-3">
 					<Skeleton className="w-4/5 rounded-lg">
 						<div className="h-3 w-full rounded-lg bg-secondary-300" />
