@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Navbar as HeroNavbar, NavbarBrand, NavbarContent, NavbarItem, Button } from "@heroui/react";
+import { Navbar as HeroNavbar, NavbarBrand, NavbarContent, NavbarItem, Button, User, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, DropdownSection } from "@heroui/react";
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { authContext } from '../contexts/AuthContext';
 import { script } from 'framer-motion/client';
+import { PlusIcon } from 'lucide-react';
+import UserDropdown from './UserDropdown';
 
 
 export const AcmeLogo = () => {
@@ -24,21 +26,11 @@ export default function Navbar() {
   const { isLoggedIn, setIsLoggedIn } = useContext(authContext);
   const [isScrolled, setIsScrolled] = useState(false);
 
-
   function logout() {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     navigate("/login");
   }
-
-  const handleScroll = () => {
-    if (window.scrollY > 50) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
-  };
-
 
   useEffect(() => {
     const throttledScrollHandler = () => {
@@ -66,9 +58,7 @@ export default function Navbar() {
       <NavbarContent justify="end">
         {isLoggedIn ?
           <NavbarItem>
-            <Button color="danger" variant="flat" onPress={logout}>
-              Logout
-            </Button>
+            <UserDropdown logout={logout} />
           </NavbarItem>
           : <>
             <NavbarItem className="flex">

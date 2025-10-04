@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CommentsBlock from './Post/CommentsBlock';
 import CommentInput from './Post/CommentInput';
 import PostStatistics from './Post/PostStatistics';
@@ -8,6 +8,9 @@ import { Card } from '@heroui/react';
 
 export default function PostDetailsCard({ id, post, likes, following, setFollowing }) {
   const commentsLen = post.comments ? post.comments.length : 0;
+  const [comments, setComments] = useState(post.comments ? post.comments : []);
+  console.log(comments);
+
   return (
     <Card className="mx-2 justify-center max-w-xl lg:max-w-6xl min-h-[400px] md:mx-auto my-5">
       <div className="mt-3 pb-3 w-full border-b border-gray-400">
@@ -23,7 +26,7 @@ export default function PostDetailsCard({ id, post, likes, following, setFollowi
                 alt="Post content"
                 className="min-w-3/5 h-[400px] w-[600px] rounded-lg object-cover"
               />
-              <p className="text-default-600 text-xl my-3">
+              <p className="text-default-600 w-[600px] text-xl my-3">
                 {post.body || "No content available"}
               </p>
             </div>
@@ -39,10 +42,10 @@ export default function PostDetailsCard({ id, post, likes, following, setFollowi
 
             {/* <PostStatistics post={post} likes={likes} className="lg:hidden" /> */}
 
-            <CommentsBlock comments={post.comments} commentsCount={commentsLen} />
+            <CommentsBlock post={post} comments={comments} setComments={setComments}  commentsCount={commentsLen} />
           </div>
           <div className="flex gap-3">
-            <CommentInput postId={id} />
+            <CommentInput postId={id} setComments={setComments}  />
           </div>
 
         </div>

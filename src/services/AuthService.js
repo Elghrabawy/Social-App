@@ -1,5 +1,6 @@
 import axios from "axios";
 import config from "../config";
+import { getLoggedUserDataApi } from "./UserService";
 
 export async function registerUserAPI(formData) {
   try {
@@ -23,11 +24,14 @@ export async function registerUserAPI(formData) {
 export async function loginUserAPI(formData) {
   try {
     const response = await axios.post(config.BASE_URL + "users/signin", formData);
+
     return {
       type: "success",
       message: "user logged successfully",
       token: response.data.token,
     };
+
+
   } catch (error) {
     let errorMessage = "an unexpected error occurred.";
     if (error.response?.data?.error) {

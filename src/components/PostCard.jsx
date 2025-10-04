@@ -5,21 +5,23 @@ import PostHeader from './Post/PostHeader';
 import PostContent from './Post/PostContent';
 import PostStatistics from './Post/PostStatistics';
 import { Link } from 'react-router-dom';
+import CommentsBlock from './Post/CommentsBlock';
 
 export default function PostCard(props) {
-  const { post } = props;
+  const { onDelete } = props;
+  const [post, setPost] = useState(props.post);
   const commentsLen = post.comments ? post.comments.length : 0;
   const [randomLikes, setRandomLikes] = useState(Math.floor(Math.random() * 200));
   const [randomFollowing, setRandomFollowing] = useState(Math.random() < 0.5);
 
   useEffect(() => {
-    setRandomFollowing(Math.random() < 0.5);
+    setRandomFollowing(0);
     setRandomLikes(Math.floor(Math.random() * 200));
   }, [])
 
   return (
     <Card className={`${props.className}`}>
-      <PostHeader post={post} following={randomFollowing} setFollowing={setRandomFollowing} />
+      <PostHeader post={post}  setPost={setPost} following={randomFollowing} setFollowing={setRandomFollowing} onDelete={onDelete}/>
       <PostContent post={post} />
       <PostStatistics commentsCount={post.comments.length || 0} likes={randomLikes} />
       {post.comments && post.comments.length > 0 && (
@@ -36,7 +38,7 @@ export default function PostCard(props) {
             </div>
           )}
           <div className="pt-2">
-            <PostComment comment={post.comments[commentsLen - 1]} />
+            <PostComment post={post} comment={post.comments[commentsLen - 1]} />
           </div>
         </div>
       )}

@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Skeleton } from "@heroui/react";
 
 export default function PostSkeleton(props) {
-	const { post } = props;
+	const { post, hasImage = true } = props;
 
 	// Format date if available
 	const formatDate = (dateString) => {
@@ -47,9 +47,12 @@ export default function PostSkeleton(props) {
 						<div className="h-3 w-full rounded-lg bg-secondary-200" />
 					</Skeleton>
 				</div>
-				<Skeleton className="rounded-lg">
-					<div className="h-50 rounded-lg bg-secondary" />
-				</Skeleton>
+				{
+					hasImage &&
+					<Skeleton className="rounded-lg">
+						<div className="h-50 rounded-lg bg-secondary" />
+					</Skeleton>
+				}
 			</CardBody>
 
 		</Card>

@@ -30,7 +30,7 @@ export default function SinglePostPage() {
       setPost(response.post);
 
       setIsLoading(false);
-      
+
       setLoadError(null);
     }
     catch (error) {
@@ -46,12 +46,6 @@ export default function SinglePostPage() {
   }
 
   useEffect(() => {
-    // if(id.length != 24) {
-    //   setIsLoading(false);
-    //   setPost(null);
-    //   return;
-    // }
-
     fetchPost();
     setRandomFollowing(Math.random() < 0.5);
     setRandomLikes(Math.floor(Math.random() * 200));
@@ -78,7 +72,6 @@ export default function SinglePostPage() {
     }
   }, [loadError])
 
-  
 
   return (<>
     {isLoading ?

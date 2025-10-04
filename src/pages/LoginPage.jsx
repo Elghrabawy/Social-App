@@ -8,6 +8,7 @@ import { loginSchema } from "../schema/LoginSchema";
 import { loginUserAPI } from "../services/AuthService"
 import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../contexts/AuthContext";
+import { getLoggedUserDataApi } from "../services/UserService";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +35,7 @@ export default function LoginPage() {
     } else {
       setErrorMessage(null);
       localStorage.setItem("token", data.token);
+      
       setIsLoggedIn(true);
       navigate("/");
     }

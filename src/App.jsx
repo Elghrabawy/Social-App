@@ -13,6 +13,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import ProtectedRoute from './ProtectedRoutes/ProtectedRoute';
 import ProtectedAuthRoute from './ProtectedRoutes/ProtectedAuthRoute';
 import SinglePostPage from './pages/SinglePostPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
       path: '/', element: <MainLayout />, children: [
         { index: true, element: <ProtectedRoute><FeedsPage /></ProtectedRoute> },
         { path: "post/:id", element: <ProtectedRoute><SinglePostPage /></ProtectedRoute> },
+        { path: "profile", element: <ProtectedRoute><ProfilePage /></ProtectedRoute> },
         { path: '*', element: <NotFoundPage /> }
       ]
     }
